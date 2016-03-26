@@ -1,5 +1,8 @@
 import sys
 
+# recursively builds the total n! possible permutations
+# of a word with n characters
+# DOES NOT ALLOW FOR REPEATED CHARACTERS
 def permute(stubs, chars):
     charset = []
     newStubs = []
@@ -11,9 +14,24 @@ def permute(stubs, chars):
         return newStubs
     return permute(newStubs, chars)
 
+# joins elements in the 2nd dimension perms array
+# and return a 1D array of sorted permutations
 def order(perms):
     perms = [''.join(perm) for perm in perms]
     return sorted(perms)
+
+# OTHER METHOD (NOT MINE):
+
+def permutations(prefix, word):
+    n = len(word)
+    # base case
+    if n == 1: 
+        print prefix + word
+        return
+    # recursion step
+    for i in range(n):
+        permutations(prefix + word[i], word[:i] + word[i+1:])
+
 
 if __name__ == '__main__':
 
@@ -26,3 +44,4 @@ if __name__ == '__main__':
             for e in chars:
                 stubs.append([e])
             print ','.join(order(permute(stubs, chars)))
+            #permutations("", "mom")
