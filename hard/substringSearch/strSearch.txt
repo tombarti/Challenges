@@ -1,0 +1,17 @@
+Hello,ell
+This is good, is
+CodeEval,C*Eval
+CodeEval,*Eval
+CodeEval,ode*
+*anse,\*an
+an*se,n\*s
+anse*,se\*
+Tom,T
+Tom,o
+Tom,m
+The Crib,
+,c
+This is a good time to be alive,is*good*alive
+1234,3*4
+,
+Old,Young

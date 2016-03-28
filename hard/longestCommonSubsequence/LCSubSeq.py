@@ -1,0 +1,41 @@
+import sys
+
+def LCSubSeq(a, b):
+    """ 
+    returns the longuest common subsequence of strings a & b
+    """
+    n = len(a)
+    m = len(b)
+
+    # compute the matrix of longuest sequence lengths
+    # (kind of like Needleman-Wunsch)
+    M = [[0 for _ in range(m + 1)] for _ in range(n + 1)]
+    for i in xrange(n):
+        for j in xrange(m):
+            if a[i] == b[j]: # if MATCH
+                M[i+1][j+1] = M[i][j] + 1
+            else: # if MISMATCH
+                M[i+1][j+1] = max(M[i+1][j], M[i][j+1])
+
+    # now backtrack through M to return the actual sequence
+    return backtrack(M, a, b, n ,m)
+
+def backtrack(M, a, b, i, j):
+    """ 
+    Backtracks through the computed matrix M to find the 
+    longuest common sequence and output it
+    """
+    if i == 0 or j == 0:
+        return ""
+    elif a[i-1] == b[j-1]:
+        return backtrack(M, a, b, i-1, j-1,) + a[i-1]
+    else:
+        if M[i][j-1] > M[i-1][j]:
+            return backtrack(M, a, b, i, j-1)
+        else:
+            return backtrack(M, a, b, i-1, j)
+
+with open(sys.argv[1], "r") as f:
+    for line in f:
+        [str1, str2] = line.rstrip().split(';')
+        print LCSubSeq(str1, str2)
