@@ -14,16 +14,16 @@ typedef struct Search
 // separate the two comma separated strings
 void separate (char* str, char sep, Search * s)
 {
-	int i = 0;
+    int i = 0;
     int n = strlen (str);
     // find index of the comma ','
-	while (str[i] != sep)
-		i++;
+    while (str[i] != sep)
+        i++;
     s->txt = malloc (sizeof (char) * (i + 1));
     s->str = malloc (sizeof (char) * (n - i + 1)); 
-	strncpy(s->txt, str, i * sizeof(char));
+    strncpy(s->txt, str, i * sizeof(char));
     s->txt[i] = '\0';
-	strcpy(s->str, &str[i+1]);
+    strcpy(s->str, &str[i+1]);
     int m = strlen (s->str);
     if (s->str[m-1] == '\n')
         s->str[m-1] = '\0';
